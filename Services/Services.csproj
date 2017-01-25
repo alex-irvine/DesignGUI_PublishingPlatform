@@ -119,6 +119,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\adeservices.cadescenter.com - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\adeservices.cadescenter.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CADESservices - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\cust.pubxml" />
     <None Include="Web.Debug.config">
