@@ -61,26 +61,25 @@ namespace Administration
                     System.IO.DirectoryInfo di = new DirectoryInfo(logoPath);
                     di.Delete(true);
                 }
-                
-                    DirectorySecurity securityRules = new DirectorySecurity();
-                    securityRules.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
-                                                FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
-                                                PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-                    DirectoryInfo dir = Directory.CreateDirectory(logoPath); 
-                    dir.SetAccessControl(securityRules);
+
+                DirectorySecurity securityRules = new DirectorySecurity();
+                securityRules.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null),
+                                            FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
+                                            PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+                DirectoryInfo dir = Directory.CreateDirectory(logoPath);
+                dir.SetAccessControl(securityRules);
 
                 using (var dbx = new DropboxClient(SysConfig.DBKey))
                 {
-                    
                     string folder = Path.GetDirectoryName(Server.MapPath(FileInput.FileName)); // path to containing folder of file to be uploaded
                     string fileName = FileInput.FileName; // name of file to be uploaded
                     FileStream fs = new FileStream(@logoPath + "\\data.dat", FileMode.CreateNew, FileAccess.ReadWrite);
                     FileInput.PostedFile.InputStream.CopyTo(fs);
                     fs.Close();
-                    // 128 kb chunks
+                    //128 kb chunks
                     const int chunkSize = 128 * 1024;
                     // create filestream
-                    using (FileStream stream = new FileStream(@logoPath + "\\data.dat", FileMode.Open, FileAccess.ReadWrite)) 
+                    using (FileStream stream = new FileStream(@logoPath + "\\data.dat", FileMode.Open, FileAccess.ReadWrite))
                     //using (FileStream stream = File.Create(logoPath))
                     {
                         //FileInput.PostedFile.InputStream.CopyTo(stream);
@@ -95,24 +94,24 @@ namespace Administration
                         for (int i = 0; i < numChunks; i++)
                         {
                             Console.WriteLine(i.ToString() + " / " + numChunks.ToString());
-                            
+
                             var byteRead = stream.Read(buffer, 0, chunkSize);
                             UploadSessionAppendArg arg = new UploadSessionAppendArg();
-                            
+
                             using (MemoryStream memStream = new MemoryStream(buffer, 0, byteRead))
                             {
-                                
+
                                 if (i == 0)
                                 {
                                     var result = await dbx.Files.UploadSessionStartAsync(false, memStream);
                                     sessionId = result.SessionId;
-                                    
+
                                 }
                                 else
                                 {
                                     var cursor = new UploadSessionCursor(sessionId, (ulong)(chunkSize * i));
                                     Status.Text = i.ToString() + " / " + numChunks.ToString();
-                                    
+
                                     System.Diagnostics.Debug.WriteLine(i.ToString() + " / " + numChunks.ToString());
                                     if (i == numChunks - 1)
                                     {
@@ -126,35 +125,29 @@ namespace Administration
 
                                 }
                             }
-                            
+
 
                         }
-;
+
                     }
                     // file upload finished log new file name
-                    InsertFileRecordResponse frResp = client.InsertFileRecord(new InsertFileRecordRequest(){FileName = fileName});
+                    InsertFileRecordResponse frResp = client.InsertFileRecord(new InsertFileRecordRequest(){FileName = FileInput.PostedFile.FileName});
                     if (frResp.Errored)
                     {
                         // handle it
                         ErreurMessage.Text = "Error";
+                        return 0;
                     }
 
                     // if the file is a new version delete the old version
                     if (frResp.DeleteOldFile)
                     {
-                        // untested
-                        //new DeleteArg("/" + frResp.OldFileName);
-                        //dbx.DeleteArg("/" + frResp.OldFileName);
-                        //MessageBox.Show("dbx 8");
-
+                        await dbx.Files.DeleteAsync(new DeleteArg("/" + frResp.OldFileName));
                     }
                     ///DELETE THE TEMPORARY FILE ///
                     if (Directory.Exists(logoPath))
                     {
-                        System.IO.DirectoryInfo di = new DirectoryInfo(logoPath);
-                        di.Delete(true);
-                        
-                        
+                        //File.Delete(folder + "\\" + fileName);
                     }
                     Status.Text = "100%";
                     EndMessage.Text = "Upload Completed";

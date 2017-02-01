@@ -81,8 +81,8 @@
             <div class="carousel-inner">
                 <div class="item active" id="slide1">
                     <div class="carousel-caption">
-                        <img src="img/MIMO.jpg" style="margin:auto;"/>
-                        <p style="text-align:center;font-size:14px">
+                        <img src="img/MIMO.jpg" style="margin:auto;height:300px;margin-top:-30px;"/>
+                        <p style="text-align:center;font-size:14px;margin-top:-30px;">
                             ADE 1.0 product sample: a UWB MIMO antenna (fabricated in Bradford, UK, 2016)
                         </p>
                     </div>
