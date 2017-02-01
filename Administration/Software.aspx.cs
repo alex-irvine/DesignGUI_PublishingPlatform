@@ -147,7 +147,8 @@ namespace Administration
                     ///DELETE THE TEMPORARY FILE ///
                     if (Directory.Exists(logoPath))
                     {
-                        //File.Delete(folder + "\\" + fileName);
+                        System.IO.DirectoryInfo di = new DirectoryInfo(logoPath);
+                        di.Delete(true);
                     }
                     Status.Text = "100%";
                     EndMessage.Text = "Upload Completed";
