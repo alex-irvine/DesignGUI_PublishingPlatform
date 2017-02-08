@@ -33,6 +33,7 @@
         <div id="titleHome">
             <h2><span>ADE </span>1.0</h2>
             <h3>Antenna Design Explorer</h3>
+            <p>This software is free for academic researchers. Availability for enigneering design companies can be discussed.</p>
             <hr class="light-sep">
             <asp:Label ID="lblErrorMsg" runat="server" CssClass="text-warning"></asp:Label>
         </div>

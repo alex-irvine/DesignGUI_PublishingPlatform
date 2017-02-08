@@ -12,6 +12,7 @@
      <div class="containerSpecial">
             <h1 style="color:#1879ba"><span><b>CADES</b></span></h1>
             <h5>Computer-Aided Design and Engineering Software </h5>
+            <p style="color:#1879ba">Free software tools for academic research and development</p>
             <hr class="light-sep">
 
            <div>

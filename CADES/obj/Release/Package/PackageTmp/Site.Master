@@ -51,8 +51,8 @@
                 </div>
                 <% if (!Request.IsAuthenticated) { %>
                 <ul class="nav navbar-nav navbar-right">
-    	            <li id="RegisterLogin1"><a href="/Account/Register">Register</a></li>
-                    <li id="RegisterLogin2"><a href="/Account/Login">Login</a></li>
+    	            <%--<li id="RegisterLogin1"><a href="/Account/Register">Register</a></li>
+                    <li id="RegisterLogin2"><a href="/Account/Login">Login</a></li>--%>
                  </ul>
                 <% } else { %>
                 <ul class="nav navbar-nav navbar-right">
@@ -69,9 +69,9 @@
             <div class="navbar-collapse collapse navbar-left">
                 <ul class="nav navbar-nav">
                         <li><a href="/Default">Overview</a></li>
-                        <li class="dropdown"><a href="#">Products<span class="caret"></span></a>
+                        <li class="dropdown"><a href="#">Software<span class="caret"></span></a>
                           <ul class="dropdown-content">
-                            <li><a href="http://ade.cadescenter.com">ADE</a></li>
+                            <li><a href="http://ade.cadescenter.com">Antenna Design Explorer</a></li>
                           </ul>
                         </li>
                         <li><a href="https://www.youtube.com/channel/UCSiAGKde__gtvxsl3u3dxXA">Videos</a></li>
