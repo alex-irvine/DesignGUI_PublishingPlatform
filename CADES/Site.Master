@@ -72,7 +72,7 @@
                         <li class="dropdown"><a href="#">Software<span class="caret"></span></a>
                           <ul class="dropdown-content">
                             <li><a href="http://ade.cadescenter.com">Antenna Design Explorer</a></li>
-                              <%--<li><a href="http://fde.cadescenter.com">Filter Design Explorer</a></li>--%>
+                              <li><a href="http://fde.cadescenter.com">Filter Design Explorer</a></li>
                           </ul>
                         </li>
                         <li><a href="https://www.youtube.com/channel/UCSiAGKde__gtvxsl3u3dxXA">Videos</a></li>

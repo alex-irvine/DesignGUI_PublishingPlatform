@@ -31,6 +31,13 @@
                     </td>
                   </tr>
                 </table>
+                <table id="news3" style="margin-top:30px;width:100%;border-collapse: collapse;border-spacing: 5px 30px;">
+                   <tr style="width:auto">
+                    <td style="width:auto;border:2px solid #1879ba;">
+                        <p><span style="color:#1879ba">[10/03/2017]: </span> Microwave Filter Efficient Global Optimizer was released by the CADES EM team. It aims at providing highly optimal filter designs when the initial design is poor and when local optimization cannot solve the problem. </p>
+                    </td>
+                  </tr>
+                </table>
                 
             </div>
     </div>
