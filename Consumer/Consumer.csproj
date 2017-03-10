@@ -197,6 +197,7 @@
     <Content Include="Content\carousel.css" />
     <Content Include="Content\logo2navbar.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\icomoon.svg" />
     <Content Include="fonts\style.css" />
     <Content Include="img\alex_screenshot3.jpg" />
